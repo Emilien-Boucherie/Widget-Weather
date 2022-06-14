@@ -1,0 +1,59 @@
+﻿@model Root
+
+@{
+    ViewData["Weather"] = "Weather";
+}
+<h1>Search City and get weather </h1>
+
+<form asp-controller="Weather" asp-action="Weather" method="post">
+    <div>
+    <label for="city">Enter city name :</label>
+    <input type="text" name="city" id="city" />
+    </div>
+    <div>
+    <input type="submit" value="Get weather" />
+    </div>
+</form>
+<div>    
+    <h2>Weather Forecast</h2>    
+    <table>    
+        
+        <tr>    
+            <td>    
+                <strong>City : </strong><br /><br />
+                <span id="lblCity">@Model?.Data?.FirstOrDefault()?.CityName</span>    
+                <span id="lblCountry">@Model?.Data?.FirstOrDefault()?.CountryCode</span><br /><br />
+            </td>    
+        </tr>
+        <tr>
+            <td>
+                <strong>Weather :</strong>
+                <br /><br />
+                Weather description : <label id="lblWeatherDesc">@Model?.Data?.FirstOrDefault()?.Weather.Description</label><br />
+                Temperature : <label id="lblTemp">@Model?.Data?.FirstOrDefault()?.Temp °C</label><br />
+                Temperature (Feel) : <label id="lblFeelTemp">@Model?.Data?.FirstOrDefault()?.AppTemp °C</label><br />
+                Humidity : <label id="lblHumidity">@Model?.Data?.FirstOrDefault()?.Rh %</label><br />
+                Cloud coverage : <label id="lblCloudCoverage">@Model?.Data?.FirstOrDefault()?.Clouds %</label><br /><br />       
+            </td>
+            
+        </tr>
+        <tr>
+            <td>
+                <strong>Wind :</strong><label id="lblWind"></label>
+                <br />
+                <br />
+                Wind Strength : <label id="lblWindStrength">@Model?.Data?.FirstOrDefault()?.WindSpd m/s</label><br />
+                Wind Direction : <label id="lblWindDirection">@Model?.Data?.FirstOrDefault()?.WindCdir</label><br /><br /> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Sunset/sunrise</strong><label id="lblSun"></label>
+                <br />
+                <br />
+                Sunrise time : <label id="lblSunrise">@Model?.Data?.FirstOrDefault()?.Sunrise</label><br />
+                Sunset time : <label id="lblSunset">@Model?.Data?.FirstOrDefault()?.Sunset</label>
+            </td>
+        </tr>
+    </table>
+</div>
